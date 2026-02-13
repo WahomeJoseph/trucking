@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+@theme {
+  /* Container Configuration */
+  --container-padding: 2rem;
+  --container-screen-2xl: 1400px;
+
+  /* Color System - Trucking Company Design System */
+  --color-border: hsl(210 20% 90%);
+  --color-input: hsl(210 20% 95%);
+  --color-ring: hsl(210 100% 20%);
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(210 11% 15%);
+  
+  --color-primary: hsl(210 100% 20%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-primary-dark: hsl(210 100% 15%);
+  --color-primary-light: hsl(210 100% 85%);
+  
+  --color-secondary: hsl(210 11% 96%);
+  --color-secondary-foreground: hsl(210 11% 15%);
+  
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  
+  --color-muted: hsl(210 11% 96%);
+  --color-muted-foreground: hsl(210 8% 46%);
+  
+  --color-accent: hsl(25 95% 53%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-accent-light: hsl(25 95% 85%);
+  
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(210 11% 15%);
+  
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(210 11% 15%);
+  
+  --color-sidebar-background: hsl(0 0% 98%);
+  --color-sidebar-foreground: hsl(240 5.3% 26.1%);
+  --color-sidebar-primary: hsl(240 5.9% 10%);
+  --color-sidebar-primary-foreground: hsl(0 0% 98%);
+  --color-sidebar-accent: hsl(240 4.8% 95.9%);
+  --color-sidebar-accent-foreground: hsl(240 5.9% 10%);
+  --color-sidebar-border: hsl(220 13% 91%);
+  --color-sidebar-ring: hsl(217.2 91.2% 59.8%);
+
+  /* Border Radius */
+  --radius: 0.5rem;
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Animation Keyframes */
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 0 0 hsl(25 95% 53% / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px hsl(25 95% 53% / 0);
+    }
+  }
+
+  /* Animations */
+  --animation-accordion-down: accordion-down 0.2s ease-out;
+  --animation-accordion-up: accordion-up 0.2s ease-out;
+  --animation-fade-up: fadeInUp 0.6s ease-out forwards;
+  --animation-slide-right: slideInRight 0.6s ease-out forwards;
+  --animation-pulse-glow: pulse-glow 2s infinite;
+}
+
+/* Custom Design Tokens */
+:root {
+  --hero-bg: linear-gradient(135deg, hsl(210 100% 20%), hsl(210 100% 15%));
+  --service-gradient: linear-gradient(145deg, hsl(0 0% 100%), hsl(210 11% 98%));
+  --accent-gradient: linear-gradient(135deg, hsl(25 95% 53%), hsl(25 95% 48%));
+  
+  /* Professional Shadows */
+  --shadow-soft: 0 2px 8px hsl(210 11% 15% / 0.04);
+  --shadow-medium: 0 4px 16px hsl(210 11% 15% / 0.08);
+  --shadow-strong: 0 8px 32px hsl(210 11% 15% / 0.12);
+  --shadow-accent: 0 4px 16px hsl(25 95% 53% / 0.2);
+
+  /* Smooth Transitions */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Container */
+  .container {
+    padding-inline: var(--container-padding);
+    margin-inline: auto;
+    max-width: var(--container-screen-2xl);
+  }
+
+  /* Hero Section Utilities */
+  .hero-gradient {
+    background: var(--hero-bg);
+  }
+
+  .service-card {
+    background: var(--service-gradient);
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+  }
+
+  .service-card:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+  }
+
+  .accent-gradient {
+    background: var(--accent-gradient);
+  }
+
+  /* Animations */
+  .animate-fade-up {
+    animation: var(--animation-fade-up);
+  }
+
+  .animate-slide-right {
+    animation: var(--animation-slide-right);
+  }
+
+  .animate-pulse-glow {
+    animation: var(--animation-pulse-glow);
+  }
+
+  /* Typography */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Professional Shadows */
+  .shadow-professional {
+    box-shadow: var(--shadow-medium);
+  }
+
+  .shadow-accent-glow {
+    box-shadow: var(--shadow-accent);
+  }
+
+  /* Accordion animations for Radix UI */
+  .animate-accordion-down {
+    animation: var(--animation-accordion-down);
+  }
+
+  .animate-accordion-up {
+    animation: var(--animation-accordion-up);
+  }
+}
+
+/* Utilities */
+@utility container {
+  padding-inline: var(--container-padding);
+  margin-inline: auto;
+  max-width: var(--container-screen-2xl);
+}
