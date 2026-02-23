@@ -33,7 +33,10 @@ export const Navbar = () => {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSearchOpen(false);
+      if (e.key === "Escape") {
+        setSearchOpen(false);
+        setIsOpen(false);
+      }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
@@ -276,7 +279,7 @@ export const Navbar = () => {
           {/* Hamburger Menu Items */}
           {isOpen && (
             <div
-              className="fixed inset-0 z-[100] flex flex-col"
+              className="fixed inset-0 z-[9999] flex flex-col"
               role="dialog"
               aria-modal="true"
               aria-label="Navigation menu"
@@ -367,7 +370,7 @@ export const Navbar = () => {
       {/* Search Panel and CTA Items */}
       {searchOpen && (
         <div
-          className="fixed inset-0 z-[100] flex flex-col"
+          className="fixed inset-0 z-[9999] flex flex-col"
           role="dialog"
           aria-modal="true"
           aria-label="Search"
