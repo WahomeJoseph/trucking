@@ -237,13 +237,13 @@ export const Navbar = () => {
 
             {/* Hamburger */}
             <button
-              className={`p-1.5 rounded transition-colors ${isScrolled ? "hover:bg-accent/10 text-foreground" : "hover:bg-white/20 text-white"
+              className={`p-1.5 rounded transition-colors cursor-pointer ${isScrolled ? "text-foreground hover:bg-white-10 hover:text-foreground/70" : "text-white hover:bg-white/5"
                 }`}
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
               aria-expanded={isOpen}
             >
-              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
 
             {/* CTA + divider + Search */}
