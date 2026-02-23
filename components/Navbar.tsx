@@ -66,6 +66,16 @@ export const Navbar = () => {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = (isOpen || searchOpen) ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen, searchOpen]);
+
+  useEffect(() => {
+    setIsOpen(false);
+    setSearchOpen(false);
+  }, [pathname])
+
   const navigationConfig: NavItem[] = [
     {
       type: "dropdown",
@@ -115,6 +125,52 @@ export const Navbar = () => {
     { type: "link", name: "Our Clients", href: "/clients" },
     { type: "link", name: "Contact Us", href: "/contact-us" },
   ];
+
+  const menuColumns = [
+    {
+      heading: "Company",
+      links: [
+        { name: "About Us", href: "/about-us" },
+        { name: "TruckCorp Team", href: "/about-us#leadership" },
+        { name: "Coverage Areas", href: "/about-us#coverage" },
+        { name: "Fleet & Equipment", href: "/about-us#fleet" },
+        { name: "Certifications & Awards", href: "/about-us#certifications-and-awards" },
+        { name: "Our Clients", href: "/clients" },
+      ],
+    },
+    {
+      heading: "Services",
+      links: [
+        { name: "Freight Transportation", href: "/our-services/freight-transportation" },
+        { name: "Logistics Management", href: "/our-services/logistics" },
+        { name: "Warehousing", href: "/our-services/warehousing" },
+        { name: "Supply Chain Solutions", href: "/our-services/supply-chain" },
+        { name: "Cross-Border Transport", href: "/our-services/cross-border" },
+      ],
+    },
+    {
+      heading: "Industries",
+      links: [
+        { name: "Agriculture", href: "/industries/agriculture" },
+        { name: "Automotive", href: "/industries/automotive" },
+        { name: "Construction", href: "/industries/construction" },
+        { name: "Retail", href: "/industries/retail" },
+        { name: "Pharmaceutical", href: "/industries/pharmaceutical" },
+        { name: "Food & Beverage", href: "/industries/food-beverage" },
+      ],
+    },
+    {
+      heading: "Resources",
+      links: [
+        { name: "Blog", href: "/blogs" },
+        { name: "Case Studies", href: "/case-studies" },
+        { name: "FAQs", href: "/faqs" },
+        { name: "White Papers", href: "/white-papers" },
+        { name: "Industry Reports", href: "/industry-reports" },
+        { name: "Contact Us", href: "/contact-us" },
+      ],
+    },
+  ]
 
   const navItems = [
     { name: "About Us", href: "/about-us" },
@@ -184,7 +240,7 @@ export const Navbar = () => {
         : "bg-transparent"
         }`}
     >
-      {/* Contact info bar */}
+      {/* Contact Info Bar */}
       {isScrolled && (
         <div className="hidden lg:flex items-center justify-end py-1 text-sm text-muted-foreground border-b border-border/30 transition-all duration-300 ease-in-out">
           <div className="flex items-center space-x-6 mr-6 my-2">
@@ -232,6 +288,7 @@ export const Navbar = () => {
         </Link>
 
         <div className={`w-px self-stretch shrink-0 ${dividerBg}`} />
+
         <div className="flex flex-col flex-1 min-w-0">
           <div className={`flex items-center justify-between pl-4 pr-4 pt-2 pb-1.5 border-b ${borderColor}`}>
 
@@ -273,7 +330,7 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* Bottom nav items*/}
+          {/* Bottom Nav Items*/}
           <div className="hidden lg:flex items-center justify-center space-x-6 py-3 px-2 flex-1">
             {navItems.map((item) => (
               <Link
@@ -293,109 +350,139 @@ export const Navbar = () => {
             ))}
           </div>
 
-          {/* Hamburger menu..drawer */}
+          {/* Hamburger Menu Items */}
           {isOpen && (
             <div
-              className={`fixed inset-0 top-[80px] z-40 overflow-y-auto backdrop-blur-md ${isScrolled ? "bg-background/97" : "bg-black/95"
-                }`}
+              className="fixed inset-0 z-[100] flex flex-col"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
             >
-              <div className="px-5 py-6 space-y-1">
-                <Link
-                  href="/"
-                  className={`block py-3 font-medium border-b border-border/20 ${isActive("/") ? "text-primary" : isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-primary"
-                    }`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  Home
-                </Link>
+              {/* Blurred backdrop — click outside to close */}
+              <div
+                className="absolute inset-0 bg-background/90 backdrop-blur-md"
+                onClick={() => setIsOpen(false)}
+              />
 
-                {navigationConfig.map((item) => (
-                  <div key={item.name}>
-                    {item.type === "link" ? (
-                      <Link
-                        href={item.href}
-                        className={`block py-3 font-medium border-b border-border/20 ${isActive(item.href) ? "text-primary" : isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-primary"
-                          }`}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {item.name}
-                      </Link>
-                    ) : (
-                      <div className="border-b border-border/20">
-                        <button
-                          className={`w-full flex items-center justify-between py-3 font-medium ${isScrolled ? "text-foreground" : "text-white"
-                            }`}
-                          onClick={() =>
-                            setActiveDropdown(activeDropdown === item.name ? null : item.name)
-                          }
-                        >
-                          {item.name}
-                          <ChevronDown
-                            className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === item.name ? "rotate-180" : ""
-                              }`}
-                          />
-                        </button>
-                        {activeDropdown === item.name && (
-                          <div className="pl-4 pb-2 space-y-1">
-                            {item.items.map((sub) => (
-                              <Link
-                                key={sub.name}
-                                href={sub.href}
-                                className={`block py-2 text-sm transition-colors ${isScrolled ? "text-muted-foreground hover:text-primary" : "text-white/75 hover:text-white"
-                                  }`}
-                                onClick={() => { setIsOpen(false); setActiveDropdown(null); }}
-                              >
-                                {sub.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
+              {/* Panel — scrollable, sits above backdrop */}
+              <div className="relative z-10 w-full bg-background shadow-2xl max-h-screen overflow-y-auto">
 
-                <div className="pt-4">
-                  <Link href="/get-quote" onClick={() => setIsOpen(false)}>
-                    <Buttons
-                      borderRadius="1.75rem"
-                      variant="default"
-                      className="w-full bg-primary hover:bg-primary-dark text-primary-foreground font-semibold py-3 rounded-md shadow-accent-glow"
-                    >
-                      Get Quote
-                    </Buttons>
+                {/* ── Header row: logo + close ── */}
+                <div className="container mx-auto px-6 pt-6 pb-4 flex items-center justify-between border-b border-border/40">
+                  <Link href="/" onClick={() => setIsOpen(false)}>
+                    <Image
+                      src="/logo.png"
+                      alt="TruckCorp Logo"
+                      width={90}
+                      height={56}
+                      className="object-contain"
+                      style={{ height: "44px", width: "auto" }}
+                    />
+                  </Link>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close menu"
+                    className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                {/* ── Home shortcut ── */}
+                <div className="container mx-auto px-6 pt-6 pb-2">
+                  <Link
+                    href="/"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-sm font-semibold uppercase tracking-widest transition-colors ${isActive("/") ? "text-primary" : "text-muted-foreground hover:text-primary"
+                      }`}
+                  >
+                    Home
                   </Link>
                 </div>
 
-                <div className="pt-4 border-t border-border/30 space-y-3">
-                  <Link href="tel:+254795969757" className="flex items-center space-x-3 text-sm" onClick={() => setIsOpen(false)}>
-                    <Phone className="w-4 h-4 text-accent" />
-                    <span className={isScrolled ? "text-foreground" : "text-white"}>+254 797 596 9757</span>
+                <div className="border-t border-border/40 mx-6 mt-3" />
+
+                {/* ── Navigation columns ── */}
+                <div className="container mx-auto px-6 py-8">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+                    {menuColumns.map((col) => (
+                      <div key={col.heading}>
+                        {/* Column heading — same style as search panel */}
+                        <h3 className="text-xs font-semibold uppercase tracking-widest text-primary mb-5">
+                          {col.heading}
+                        </h3>
+                        <ul className="space-y-3">
+                          {col.links.map((link) => (
+                            <li key={link.name}>
+                              <Link
+                                href={link.href}
+                                onClick={() => setIsOpen(false)}
+                                className={`text-sm transition-colors ${isActive(link.href)
+                                  ? "text-primary font-medium"
+                                  : "text-foreground hover:text-primary"
+                                  }`}
+                              >
+                                {link.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="border-t border-border/40" />
+
+                {/* ── Bottom contact + CTA strip — same as search panel ── */}
+                <div className="container mx-auto px-6 py-6 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
+                  <Link
+                    href="tel:+254795969757"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 hover:text-primary transition-colors"
+                  >
+                    <Phone className="w-4 h-4 text-primary shrink-0" />
+                    +254 797 596 9757
                   </Link>
-                  <Link href="mailto:josephwachira589@gmail.com" className="flex items-center space-x-3 text-sm" onClick={() => setIsOpen(false)}>
-                    <Mail className="w-4 h-4 text-accent" />
-                    <span className={isScrolled ? "text-foreground" : "text-white"}>josephwachira589@gmail.com</span>
+
+                  <Link
+                    href="mailto:josephwachira589@gmail.com"
+                    onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 hover:text-primary transition-colors"
+                  >
+                    <Mail className="w-4 h-4 text-primary shrink-0" />
+                    josephwachira589@gmail.com
                   </Link>
+
                   <Link
                     href="https://www.google.com/maps/place/Nairobi,+Kenya"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-3 text-sm"
                     onClick={() => setIsOpen(false)}
+                    className="flex items-center gap-2 hover:text-primary transition-colors"
                   >
-                    <MapPin className="w-4 h-4 text-accent" />
-                    <span className={isScrolled ? "text-foreground" : "text-white"}>Nairobi, Kenya</span>
+                    <MapPin className="w-4 h-4 text-primary shrink-0" />
+                    Nairobi, Kenya
+                  </Link>
+
+                  <Link
+                    href="/get-quote"
+                    onClick={() => setIsOpen(false)}
+                    className="sm:ml-auto inline-flex items-center bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-5 py-2 rounded-full text-sm font-semibold"
+                  >
+                    Get A Quote
                   </Link>
                 </div>
+
               </div>
             </div>
           )}
 
-          {/* Mobile spacer to keep logo height balanced */}
           <div className="lg:hidden flex-1 min-h-[28px]" />
         </div>
       </div>
 
+      {/* Search Panel and CTA Items */}
       {searchOpen && (
         <div
           className="fixed inset-0 z-[100] flex flex-col"
@@ -470,104 +557,6 @@ export const Navbar = () => {
           >
             <X className="w-6 h-6" />
           </button>
-        </div>
-      )}
-
-      {/* ══ Mobile drawer ══ */}
-      {isOpen && (
-        <div
-          className={`lg:hidden fixed inset-0 top-[80px] z-40 overflow-y-auto backdrop-blur-md ${isScrolled ? "bg-background/97" : "bg-black/95"
-            }`}
-        >
-          <div className="px-5 py-6 space-y-1">
-            <Link
-              href="/"
-              className={`block py-3 font-medium border-b border-border/20 ${isActive("/") ? "text-primary" : isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-primary"
-                }`}
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
-
-            {navigationConfig.map((item) => (
-              <div key={item.name}>
-                {item.type === "link" ? (
-                  <Link
-                    href={item.href}
-                    className={`block py-3 font-medium border-b border-border/20 ${isActive(item.href) ? "text-primary" : isScrolled ? "text-foreground hover:text-primary" : "text-white hover:text-primary"
-                      }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ) : (
-                  <div className="border-b border-border/20">
-                    <button
-                      className={`w-full flex items-center justify-between py-3 font-medium ${isScrolled ? "text-foreground" : "text-white"
-                        }`}
-                      onClick={() =>
-                        setActiveDropdown(activeDropdown === item.name ? null : item.name)
-                      }
-                    >
-                      {item.name}
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform duration-200 ${activeDropdown === item.name ? "rotate-180" : ""
-                          }`}
-                      />
-                    </button>
-                    {activeDropdown === item.name && (
-                      <div className="pl-4 pb-2 space-y-1">
-                        {item.items.map((sub) => (
-                          <Link
-                            key={sub.name}
-                            href={sub.href}
-                            className={`block py-2 text-sm transition-colors ${isScrolled ? "text-muted-foreground hover:text-primary" : "text-white/75 hover:text-white"
-                              }`}
-                            onClick={() => { setIsOpen(false); setActiveDropdown(null); }}
-                          >
-                            {sub.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-            ))}
-
-            <div className="pt-4">
-              <Link href="/get-quote" onClick={() => setIsOpen(false)}>
-                <Buttons
-                  borderRadius="1.75rem"
-                  variant="default"
-                  className="w-full bg-primary hover:bg-primary-dark text-primary-foreground font-semibold py-3 rounded-md shadow-accent-glow"
-                >
-                  Get Quote
-                </Buttons>
-              </Link>
-            </div>
-
-            <div className="pt-4 border-t border-border/30 space-y-3">
-              <Link href="tel:+254795969757" className="flex items-center space-x-3 text-sm" onClick={() => setIsOpen(false)}>
-                <Phone className="w-4 h-4 text-accent" />
-                <span className={isScrolled ? "text-foreground" : "text-white"}>+254 797 596 9757</span>
-              </Link>
-              <Link href="mailto:josephwachira589@gmail.com" className="flex items-center space-x-3 text-sm" onClick={() => setIsOpen(false)}>
-                <Mail className="w-4 h-4 text-accent" />
-                <span className={isScrolled ? "text-foreground" : "text-white"}>josephwachira589@gmail.com</span>
-              </Link>
-              <Link
-                href="https://www.google.com/maps/place/Nairobi,+Kenya"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-3 text-sm"
-                onClick={() => setIsOpen(false)}
-              >
-                <MapPin className="w-4 h-4 text-accent" />
-                <span className={isScrolled ? "text-foreground" : "text-white"}>Nairobi, Kenya</span>
-              </Link>
-            </div>
-          </div>
         </div>
       )}
     </nav>
