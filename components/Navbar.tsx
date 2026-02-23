@@ -76,56 +76,6 @@ export const Navbar = () => {
     setSearchOpen(false);
   }, [pathname])
 
-  const navigationConfig: NavItem[] = [
-    {
-      type: "dropdown",
-      name: "About Us",
-      items: [
-        { name: "Company Overview", href: "/about-us#overview" },
-        { name: "TruckCorp Team", href: "/about-us#leadership" },
-        { name: "Coverage Areas", href: "/about-us#coverage" },
-        { name: "Fleet & Equipment", href: "/about-us#fleet" },
-        { name: "Certifications & Awards", href: "/about-us#certifications-and-awards" },
-      ],
-    },
-    {
-      type: "dropdown",
-      name: "Our Services",
-      items: [
-        { name: "Freight Transportation", href: "/our-services/freight-transportation" },
-        { name: "Logistics Management", href: "/our-services/logistics" },
-        { name: "Warehousing", href: "/our-services/warehousing" },
-        { name: "Supply Chain Solutions", href: "/our-services/supply-chain" },
-        { name: "Cross-Border Transport", href: "/our-services/cross-border" },
-      ],
-    },
-    {
-      type: "dropdown",
-      name: "Industries",
-      items: [
-        { name: "Agriculture", href: "/industries/agriculture" },
-        { name: "Automotive", href: "/industries/automotive" },
-        { name: "Construction", href: "/industries/construction" },
-        { name: "Retail", href: "/industries/retail" },
-        { name: "Pharmaceutical", href: "/industries/pharmaceutical" },
-        { name: "Food & Beverage", href: "/industries/food-beverage" },
-      ],
-    },
-    {
-      type: "dropdown",
-      name: "Resources",
-      items: [
-        { name: "Blog", href: "/blogs" },
-        { name: "Case Studies", href: "/case-studies" },
-        { name: "FAQs", href: "/faqs" },
-        { name: "White Papers", href: "/white-papers" },
-        { name: "Industry Reports", href: "/industry-reports" },
-      ],
-    },
-    { type: "link", name: "Our Clients", href: "/clients" },
-    { type: "link", name: "Contact Us", href: "/contact-us" },
-  ];
-
   const menuColumns = [
     {
       heading: "Company",
