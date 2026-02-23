@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+
+import React, { useEffect, useRef } from "react";
 import {
   motion,
   useAnimationFrame,
@@ -7,8 +8,11 @@ import {
   useMotionValue,
   useTransform,
 } from "motion/react";
-import { useRef } from "react";
 import { cn } from "@/lib/utils";
+
+/* ============================================================
+   BUTTON WRAPPER
+============================================================ */
 
 export function Buttons({
   borderRadius = "1.75rem",
@@ -16,7 +20,7 @@ export function Buttons({
   as: Component = "button",
   containerClassName,
   borderClassName,
-  duration,
+  duration = 3000,
   className,
   ...otherProps
 }: {
@@ -32,14 +36,13 @@ export function Buttons({
   return (
     <Component
       className={cn(
-        "relative h-14 w-34 overflow-hidden bg-transparent p-[1px] text-xl",
-        containerClassName,
+        "relative h-12 w-34 overflow-hidden bg-transparent p-[1px] text-xl",
+        containerClassName
       )}
-      style={{
-        borderRadius: borderRadius,
-      }}
+      style={{ borderRadius }}
       {...otherProps}
     >
+      {/* Moving Border Layer */}
       <div
         className="absolute inset-0"
         style={{ borderRadius: `calc(${borderRadius} * 0.96)` }}
@@ -48,16 +51,17 @@ export function Buttons({
           <div
             className={cn(
               "h-20 w-20 bg-[radial-gradient(#0ea5e9_40%,transparent_60%)] opacity-[0.8]",
-              borderClassName,
+              borderClassName
             )}
           />
         </MovingBorder>
       </div>
 
+      {/* Inner Content */}
       <div
         className={cn(
-          "relative flex h-full w-full items-center justify-center border border-slate-800 bg-slate-900/[0.8] text-sm text-white antialiased backdrop-blur-xl",
-          className,
+          "relative flex h-full w-full items-center justify-center border border-slate-800 bg-slate-900/80 text-sm text-white antialiased backdrop-blur-xl",
+          className
         )}
         style={{
           borderRadius: `calc(${borderRadius} * 0.96)`,
@@ -68,6 +72,10 @@ export function Buttons({
     </Component>
   );
 }
+
+/* ============================================================
+   MOVING BORDER (FULLY SAFE VERSION)
+============================================================ */
 
 export const MovingBorder = ({
   children,
@@ -82,27 +90,81 @@ export const MovingBorder = ({
   ry?: string;
   [key: string]: any;
 }) => {
-  const pathRef = useRef<any>(null);
-  const progress = useMotionValue<number>(0);
+  const pathRef = useRef<SVGRectElement | null>(null);
+  const progress = useMotionValue(0);
+  const lengthRef = useRef(0);
 
+  /* -----------------------------
+     Measure path length safely
+  ----------------------------- */
+  useEffect(() => {
+    if (!pathRef.current) return;
+
+    const updateLength = () => {
+      try {
+        const total = pathRef.current?.getTotalLength() ?? 0;
+        lengthRef.current = total;
+      } catch {
+        lengthRef.current = 0;
+      }
+    };
+
+    updateLength();
+
+    // Important for responsive layouts (like navbar)
+    window.addEventListener("resize", updateLength);
+    return () => window.removeEventListener("resize", updateLength);
+  }, []);
+
+  /* -----------------------------
+     Animation Frame
+  ----------------------------- */
   useAnimationFrame((time) => {
-    const length = pathRef.current?.getTotalLength();
-    if (length) {
-      const pxPerMillisecond = length / duration;
-      progress.set((time * pxPerMillisecond) % length);
+    const length = lengthRef.current;
+    if (!length) return;
+
+    const pxPerMs = length / duration;
+    progress.set((time * pxPerMs) % length);
+  });
+
+  /* -----------------------------
+     Safe X transform
+  ----------------------------- */
+  const x = useTransform(progress, (val) => {
+    const path = pathRef.current;
+    const length = lengthRef.current;
+
+    if (!path || !length) return 0;
+
+    try {
+      return path.getPointAtLength(val % length).x;
+    } catch {
+      return 0;
     }
   });
 
-  const x = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).x,
-  );
-  const y = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).y,
-  );
+  /* -----------------------------
+     Safe Y transform
+  ----------------------------- */
+  const y = useTransform(progress, (val) => {
+    const path = pathRef.current;
+    const length = lengthRef.current;
 
-  const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
+    if (!path || !length) return 0;
+
+    try {
+      return path.getPointAtLength(val % length).y;
+    } catch {
+      return 0;
+    }
+  });
+
+  const transform = useMotionTemplate`
+    translateX(${x}px)
+    translateY(${y}px)
+    translateX(-50%)
+    translateY(-50%)
+  `;
 
   return (
     <>
@@ -123,6 +185,7 @@ export const MovingBorder = ({
           ref={pathRef}
         />
       </svg>
+
       <motion.div
         style={{
           position: "absolute",
