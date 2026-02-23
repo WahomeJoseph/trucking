@@ -153,8 +153,8 @@ export const Navbar = () => {
 
   const textColor = isScrolled ? "text-foreground" : "text-white";
   const hoverColor = isScrolled ? "hover:text-primary" : "hover:text-white/70";
-  const borderColor = isScrolled ? "border-border" : "border-white/25";
-  const dividerBg = isScrolled ? "bg-border" : "bg-white/25";
+  const borderColor = isScrolled ? "border-border" : "border-white/5";
+  const dividerBg = isScrolled ? "bg-border" : "bg-white/5";
 
   return (
     <nav
@@ -203,8 +203,8 @@ export const Navbar = () => {
           <Image
             src="/logo.png"
             alt="TruckCorp Logo"
-            width={110}
-            height={80}
+            width={120}
+            height={100}
             className="object-contain"
             style={{ height: "72px", width: "auto" }}
           />
@@ -356,47 +356,6 @@ export const Navbar = () => {
                 </div>
 
                 <div className="border-t border-border/40" />
-
-                {/* ── Bottom contact + CTA strip — same as search panel ── */}
-                <div className="container mx-auto px-6 py-6 flex flex-wrap items-center gap-5 text-sm text-muted-foreground">
-                  <Link
-                    href="tel:+254795969757"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 hover:text-primary transition-colors"
-                  >
-                    <Phone className="w-4 h-4 text-primary shrink-0" />
-                    +254 797 596 9757
-                  </Link>
-
-                  <Link
-                    href="mailto:josephwachira589@gmail.com"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 hover:text-primary transition-colors"
-                  >
-                    <Mail className="w-4 h-4 text-primary shrink-0" />
-                    josephwachira589@gmail.com
-                  </Link>
-
-                  <Link
-                    href="https://www.google.com/maps/place/Nairobi,+Kenya"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center gap-2 hover:text-primary transition-colors"
-                  >
-                    <MapPin className="w-4 h-4 text-primary shrink-0" />
-                    Nairobi, Kenya
-                  </Link>
-
-                  <Link
-                    href="/get-quote"
-                    onClick={() => setIsOpen(false)}
-                    className="sm:ml-auto inline-flex items-center bg-primary text-primary-foreground hover:bg-primary/90 transition-colors px-5 py-2 rounded-full text-sm font-semibold"
-                  >
-                    Get A Quote
-                  </Link>
-                </div>
-
               </div>
             </div>
           )}
