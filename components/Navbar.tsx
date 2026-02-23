@@ -6,14 +6,20 @@ import { Buttons } from "./ui/moving-border";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { createPortal } from "react-dom";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
+  const [mounted, setMounted] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
+
+  useEffect(() => {
+    setMounted(true);
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -277,173 +283,176 @@ export const Navbar = () => {
           </div>
 
           {/* Hamburger Menu Items */}
-          {isOpen && (
-            <div
-              className="fixed inset-0 z-[9999] flex flex-col"
-              role="dialog"
-              aria-modal="true"
-              aria-label="Navigation menu"
-            >
-              {/* Blurred backdrop — click outside to close */}
+          {mounted && isOpen && createPortal(
+            <>
               <div
-                className="absolute inset-0 bg-background/90 backdrop-blur-md"
-                onClick={() => setIsOpen(false)}
-              />
+                className="fixed inset-0 z-[9999] flex flex-col"
+                role="dialog"
+                aria-modal="true"
+                aria-label="Navigation menu"
+              >
+                {/* Blurred backdrop — click outside to close */}
+                <div
+                  className="absolute inset-0 bg-background/90 backdrop-blur-md"
+                  onClick={() => setIsOpen(false)}
+                />
 
-              {/* Panel — scrollable, sits above backdrop */}
-              <div className="relative z-10 w-full bg-background shadow-2xl max-h-screen overflow-y-auto">
+                {/* Panel — scrollable, sits above backdrop */}
+                <div className="relative z-10 w-full bg-background shadow-2xl max-h-screen overflow-y-auto">
 
-                {/* ── Header row: logo + close ── */}
-                <div className="container mx-auto px-6 pt-6 pb-4 flex items-center justify-between border-b border-border/40">
-                  <Link href="/" onClick={() => setIsOpen(false)}>
-                    <Image
-                      src="/logo.png"
-                      alt="TruckCorp Logo"
-                      width={90}
-                      height={56}
-                      className="object-contain"
-                      style={{ height: "44px", width: "auto" }}
-                    />
-                  </Link>
-                  <button
-                    onClick={() => setIsOpen(false)}
-                    aria-label="Close menu"
-                    className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
-                </div>
-
-                {/* ── Home shortcut ── */}
-                <div className="container mx-auto px-6 pt-6 pb-2">
-                  <Link
-                    href="/"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-sm font-semibold uppercase tracking-widest transition-colors ${isActive("/") ? "text-primary" : "text-muted-foreground hover:text-primary"
-                      }`}
-                  >
-                    Home
-                  </Link>
-                </div>
-
-                <div className="border-t border-border/40 mx-6 mt-3" />
-
-                {/* ── Navigation columns ── */}
-                <div className="container mx-auto px-6 py-8">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
-                    {menuColumns.map((col) => (
-                      <div key={col.heading}>
-                        {/* Column heading — same style as search panel */}
-                        <h3 className="text-xs font-semibold uppercase tracking-widest text-primary mb-5">
-                          {col.heading}
-                        </h3>
-                        <ul className="space-y-3">
-                          {col.links.map((link) => (
-                            <li key={link.name}>
-                              <Link
-                                href={link.href}
-                                onClick={() => setIsOpen(false)}
-                                className={`text-sm transition-colors ${isActive(link.href)
-                                  ? "text-primary font-medium"
-                                  : "text-foreground hover:text-primary"
-                                  }`}
-                              >
-                                {link.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                  {/* ── Header row: logo + close ── */}
+                  <div className="container mx-auto px-6 pt-6 pb-4 flex items-center justify-between border-b border-border/40">
+                    <Link href="/" onClick={() => setIsOpen(false)}>
+                      <Image
+                        src="/logo.png"
+                        alt="TruckCorp Logo"
+                        width={90}
+                        height={56}
+                        className="object-contain"
+                        style={{ height: "44px", width: "auto" }}
+                      />
+                    </Link>
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      aria-label="Close menu"
+                      className="p-2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                    >
+                      <X className="w-6 h-6" />
+                    </button>
                   </div>
-                </div>
 
-                <div className="border-t border-border/40" />
+                  {/* ── Home shortcut ── */}
+                  <div className="container mx-auto px-6 pt-6 pb-2">
+                    <Link
+                      href="/"
+                      onClick={() => setIsOpen(false)}
+                      className={`text-sm font-semibold uppercase tracking-widest transition-colors ${isActive("/") ? "text-primary" : "text-muted-foreground hover:text-primary"
+                        }`}
+                    >
+                      Home
+                    </Link>
+                  </div>
+
+                  <div className="border-t border-border/40 mx-6 mt-3" />
+
+                  {/* ── Navigation columns ── */}
+                  <div className="container mx-auto px-6 py-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
+                      {menuColumns.map((col) => (
+                        <div key={col.heading}>
+                          {/* Column heading — same style as search panel */}
+                          <h3 className="text-xs font-semibold uppercase tracking-widest text-primary mb-5">
+                            {col.heading}
+                          </h3>
+                          <ul className="space-y-3">
+                            {col.links.map((link) => (
+                              <li key={link.name}>
+                                <Link
+                                  href={link.href}
+                                  onClick={() => setIsOpen(false)}
+                                  className={`text-sm transition-colors ${isActive(link.href)
+                                    ? "text-primary font-medium"
+                                    : "text-foreground hover:text-primary"
+                                    }`}
+                                >
+                                  {link.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="border-t border-border/40" />
+                </div>
               </div>
-            </div>
-          )}
+            </>
+            , document.body)}
 
           <div className="lg:hidden flex-1 min-h-[28px]" />
         </div>
       </div>
 
       {/* Search Panel and CTA Items */}
-      {searchOpen && (
-        <div
-          className="fixed inset-0 z-[9999] flex flex-col"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Search"
-        >
+      {mounted && searchOpen && createPortal(
+        <>
           <div
-            className="absolute inset-0 bg-background/90 backdrop-blur-md"
-            onClick={() => setSearchOpen(false)}
-          />
-
-          <div className="relative z-10 w-full bg-background shadow-2xl max-h-screen overflow-y-auto">
-
-            <div className="container mx-auto px-6 pt-28 pb-10">
-              <div className="flex max-w-2xl justify-center items-center gap-4 border border-border rounded-lg px-4 mx-auto py-3 bg-muted/40 focus-within:ring-2 focus-within:ring-primary transition-all">
-                <Search className="w-5 h-5 text-muted-foreground shrink-0" />
-                <div className="w-px h-5 bg-border shrink-0" />
-                <input
-                  ref={searchInputRef}
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search TruckCorp - routes, services, resources..."
-                  className="flex-1 bg-transparent outline-none text-base text-foreground placeholder:text-muted-foreground"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
-                    aria-label="Clear search"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-            </div>
-
-            <div className="border-t border-border/40" />
-
-            <div className="container mx-auto px-6 py-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                {searchLinks.map((col) => (
-                  <div key={col.heading}>
-                    <h3 className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">
-                      {col.heading}
-                    </h3>
-                    <ul className="space-y-3">
-                      {col.links.map((link) => (
-                        <li key={link.name}>
-                          <Link
-                            href={link.href}
-                            onClick={() => setSearchOpen(false)}
-                            className="text-sm text-foreground hover:text-primary transition-colors"
-                          >
-                            {link.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Close button */}
-          <button
-            onClick={() => setSearchOpen(false)}
-            aria-label="Close search"
-            className="absolute top-14 right-10 z-20 p-2 cursor-pointer rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            className="fixed inset-0 z-[9999] flex flex-col"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Search"
           >
-            <X className="w-6 h-6" />
-          </button>
-        </div>
-      )}
+            <div
+              className="absolute inset-0 bg-background/90 backdrop-blur-md"
+              onClick={() => setSearchOpen(false)}
+            />
+
+            <div className="relative z-10 w-full bg-background shadow-2xl max-h-screen overflow-y-auto">
+
+              <div className="container mx-auto px-6 pt-28 pb-10">
+                <div className="flex max-w-2xl justify-center items-center gap-4 border border-border rounded-lg px-4 mx-auto py-3 bg-muted/40 focus-within:ring-2 focus-within:ring-primary transition-all">
+                  <Search className="w-5 h-5 text-muted-foreground shrink-0" />
+                  <div className="w-px h-5 bg-border shrink-0" />
+                  <input
+                    ref={searchInputRef}
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Search TruckCorp - routes, services, resources..."
+                    className="flex-1 bg-transparent outline-none text-base text-foreground placeholder:text-muted-foreground"
+                  />
+                  {searchQuery && (
+                    <button
+                      onClick={() => setSearchQuery("")}
+                      className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+                      aria-label="Clear search"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              <div className="border-t border-border/40" />
+
+              <div className="container mx-auto px-6 py-8">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                  {searchLinks.map((col) => (
+                    <div key={col.heading}>
+                      <h3 className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">
+                        {col.heading}
+                      </h3>
+                      <ul className="space-y-3">
+                        {col.links.map((link) => (
+                          <li key={link.name}>
+                            <Link
+                              href={link.href}
+                              onClick={() => setSearchOpen(false)}
+                              className="text-sm text-foreground hover:text-primary transition-colors"
+                            >
+                              {link.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Close button */}
+            <button
+              onClick={() => setSearchOpen(false)}
+              aria-label="Close search"
+              className="absolute top-14 right-10 z-20 p-2 cursor-pointer rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+        </>
+        , document.body)}
     </nav>
   );
 };
