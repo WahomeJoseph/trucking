@@ -212,10 +212,9 @@ export const Navbar = () => {
           <Image
             src="/logo.png"
             alt="TruckCorp Logo"
-            width={120}
+            width={100}
             height={100}
-            className="object-contain"
-            style={{ height: "72px", width: "auto" }}
+            className="object-contain scale-120"
           />
         </Link>
 
