@@ -27,7 +27,9 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState<string>("");
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -44,6 +46,24 @@ export const Navbar = () => {
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => searchInputRef.current?.focus(), 50);
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [searchOpen]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSearchOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
   }, []);
 
   const navigationConfig: NavItem[] = [
@@ -105,6 +125,48 @@ export const Navbar = () => {
     { name: "Contact Us", href: "/contact-us" },
   ]
 
+  const searchLinks = [
+    {
+      heading: "Quick Links",
+      links: [
+        { name: "About Us", href: "/about-us" },
+        { name: "Our Services", href: "/our-services/freight-transportation" },
+        { name: "Industries", href: "/industries/agriculture" },
+        { name: "Our Clients", href: "/clients" },
+        { name: "Get A Quote", href: "/get-quote" },
+      ],
+    },
+    {
+      heading: "Services",
+      links: [
+        { name: "Freight Transportation", href: "/our-services/freight-transportation" },
+        { name: "Logistics Management", href: "/our-services/logistics" },
+        { name: "Warehousing", href: "/our-services/warehousing" },
+        { name: "Supply Chain", href: "/our-services/supply-chain" },
+        { name: "Cross-Border Transport", href: "/our-services/cross-border" },
+      ],
+    },
+    {
+      heading: "Resources",
+      links: [
+        { name: "Blog", href: "/blogs" },
+        { name: "Case Studies", href: "/case-studies" },
+        { name: "FAQs", href: "/faqs" },
+        { name: "White Papers", href: "/white-papers" },
+        { name: "Industry Reports", href: "/industry-reports" },
+      ],
+    },
+    {
+      heading: "Contact",
+      links: [
+        { name: "+254 797 596 9757", href: "tel:+254795969757" },
+        { name: "josephwachira589@gmail.com", href: "mailto:josephwachira589@gmail.com" },
+        { name: "Nairobi, Kenya", href: "https://www.google.com/maps/place/Nairobi,+Kenya" },
+        { name: "Contact Us", href: "/contact-us" },
+      ],
+    },
+  ]
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href.split("#")[0]);
@@ -122,18 +184,18 @@ export const Navbar = () => {
         : "bg-transparent"
         }`}
     >
-      {/* ── Contact info bar — visible only when scrolled ── */}
+      {/* Contact info bar */}
       {isScrolled && (
         <div className="hidden lg:flex items-center justify-end py-1 text-sm text-muted-foreground border-b border-border/30 transition-all duration-300 ease-in-out">
           <div className="flex items-center space-x-6 mr-6 my-2">
             <div className="flex flex-row items-center space-x-2">
-              <Link href="tel:+254795969757" className="flex flex-row items-center space-x-2 hover:text-accent transition-colors">
+              <Link href="tel:+254795969757" className="flex flex-row items-center space-x-2 hover:text-primary transition-colors">
                 <Phone className="w-4 h-4 text-accent" />
                 <span>+254 797 596 9757</span>
               </Link>
             </div>
             <div className="flex flex-row items-center space-x-2">
-              <Link href="mailto:josephwachira589@gmail.com" className="flex flex-row items-center space-x-2 hover:text-accent transition-colors">
+              <Link href="mailto:josephwachira589@gmail.com" className="flex flex-row items-center space-x-2 hover:text-primary transition-colors">
                 <Mail className="w-4 h-4 text-accent" />
                 <span>josephwachira589@gmail.com</span>
               </Link>
@@ -143,7 +205,7 @@ export const Navbar = () => {
                 href="https://www.google.com/maps/place/Nairobi,+Kenya"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex flex-row items-center space-x-2 hover:text-accent transition-colors"
+                className="flex flex-row items-center space-x-2 hover:text-primary transition-colors"
               >
                 <MapPin className="w-4 h-4 text-accent" />
                 <span>Nairobi, Kenya</span>
@@ -201,7 +263,7 @@ export const Navbar = () => {
               <div className={`hidden sm:block h-6.5 w-px ${dividerBg}`} />
 
               <button
-                className={`p-2.5 rounded-full transition-colors ${isScrolled ? "text-foreground hover:bg-accent" : "text-white hover:bg-white/20"
+                className={`p-2.5 rounded-full transition-colors cursor-pointer ${isScrolled ? "text-foreground hover:bg-white-10 hover:text-foreground/70" : "text-white hover:bg-white/5"
                   }`}
                 onClick={() => setSearchOpen(!searchOpen)}
                 aria-label="Search"
@@ -334,26 +396,79 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* search bar */}
       {searchOpen && (
         <div
-          className={`border-t ${isScrolled ? "border-border bg-background" : "border-white/20 bg-black/70"
-            } px-6 py-3 flex items-center gap-3`}
+          className="fixed inset-0 z-[100] flex flex-col"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Search"
         >
-          <Search className={`w-4 h-4 shrink-0 ${isScrolled ? "text-muted-foreground" : "text-white/60"}`} />
-          <input
-            autoFocus
-            type="text"
-            placeholder="Search TruckCorp…"
-            className={`flex-1 bg-transparent outline-none text-sm ${isScrolled ? "text-foreground placeholder:text-muted-foreground" : "text-white placeholder:text-white/50"
-              }`}
+          <div
+            className="absolute inset-0 bg-background/90 backdrop-blur-md"
+            onClick={() => setSearchOpen(false)}
           />
+
+          <div className="relative z-10 w-full bg-background shadow-2xl max-h-screen overflow-y-auto">
+
+            <div className="container mx-auto px-6 pt-28 pb-10">
+              <div className="flex max-w-2xl justify-center items-center gap-4 border border-border rounded-lg px-4 mx-auto py-3 bg-muted/40 focus-within:ring-2 focus-within:ring-primary transition-all">
+                <Search className="w-5 h-5 text-muted-foreground shrink-0" />
+                <div className="w-px h-5 bg-border shrink-0" />
+                <input
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search TruckCorp - routes, services, resources..."
+                  className="flex-1 bg-transparent outline-none text-base text-foreground placeholder:text-muted-foreground"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="text-muted-foreground hover:text-foreground transition-colors shrink-0"
+                    aria-label="Clear search"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+            </div>
+
+            <div className="border-t border-border/40" />
+
+            <div className="container mx-auto px-6 py-8">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                {searchLinks.map((col) => (
+                  <div key={col.heading}>
+                    <h3 className="text-xs font-semibold uppercase tracking-widest text-primary mb-4">
+                      {col.heading}
+                    </h3>
+                    <ul className="space-y-3">
+                      {col.links.map((link) => (
+                        <li key={link.name}>
+                          <Link
+                            href={link.href}
+                            onClick={() => setSearchOpen(false)}
+                            className="text-sm text-foreground hover:text-primary transition-colors"
+                          >
+                            {link.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Close button */}
           <button
             onClick={() => setSearchOpen(false)}
-            className={`text-xs font-medium transition-colors ${isScrolled ? "text-muted-foreground hover:text-foreground" : "text-white/60 hover:text-white"
-              }`}
+            aria-label="Close search"
+            className="absolute top-14 right-10 z-20 p-2 cursor-pointer rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
           >
-            Cancel
+            <X className="w-6 h-6" />
           </button>
         </div>
       )}
