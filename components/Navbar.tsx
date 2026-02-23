@@ -1,34 +1,17 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Menu, X, Phone, Mail, MapPin, Search, ChevronDown } from "lucide-react";
+import { Menu, X, Phone, Mail, MapPin, Search } from "lucide-react";
 import { Buttons } from "./ui/moving-border";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-type NavLink = {
-  type: "link";
-  name: string;
-  href: string;
-};
-
-type NavDropdown = {
-  type: "dropdown";
-  name: string;
-  items: { name: string; href: string; description?: string }[];
-};
-
-type NavItem = NavLink | NavDropdown;
-
 export const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
-  const dropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
 
@@ -36,16 +19,6 @@ export const Navbar = () => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setActiveDropdown(null);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   useEffect(() => {
