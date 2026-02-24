@@ -67,7 +67,7 @@ export const Navbar = () => {
         { name: "Coverage Areas", href: "/about-us#coverage" },
         { name: "Fleet & Equipment", href: "/about-us#fleet" },
         { name: "Certifications & Awards", href: "/about-us#certifications-and-awards" },
-        { name: "Our Clients", href: "/clients" },
+        { name: "Our Clients", href: "/our-clients" },
       ],
     },
     {
@@ -77,7 +77,7 @@ export const Navbar = () => {
         { name: "Logistics Management", href: "/our-services/logistics" },
         { name: "Warehousing", href: "/our-services/warehousing" },
         { name: "Supply Chain Solutions", href: "/our-services/supply-chain" },
-        { name: "Cross-Border Transport", href: "/our-services/cross-border" },
+        { name: "Cross-Border Transport", href: "/our-services/cross-border-transport" },
       ],
     },
     {
@@ -88,7 +88,7 @@ export const Navbar = () => {
         { name: "Construction", href: "/industries/construction" },
         { name: "Retail", href: "/industries/retail" },
         { name: "Pharmaceutical", href: "/industries/pharmaceutical" },
-        { name: "Food & Beverage", href: "/industries/food-beverage" },
+        { name: "Food & Beverage", href: "/industries/food-and-beverage" },
       ],
     },
     {
@@ -109,7 +109,7 @@ export const Navbar = () => {
     { name: "Our Services", href: "/our-services" },
     { name: "Industries", href: "/industries" },
     { name: "Resources", href: "/blogs" },
-    { name: "Our Clients", href: "/clients" },
+    { name: "Our Clients", href: "/our-clients" },
     { name: "Contact Us", href: "/contact-us" },
   ]
 
@@ -118,9 +118,9 @@ export const Navbar = () => {
       heading: "Quick Links",
       links: [
         { name: "About Us", href: "/about-us" },
-        { name: "Our Services", href: "/our-services/freight-transportation" },
-        { name: "Industries", href: "/industries/agriculture" },
-        { name: "Our Clients", href: "/clients" },
+        { name: "Our Services", href: "/our-services" },
+        { name: "Industries", href: "/industries" },
+        { name: "Our Clients", href: "/our-clients" },
         { name: "Get A Quote", href: "/get-quote" },
       ],
     },
@@ -131,7 +131,7 @@ export const Navbar = () => {
         { name: "Logistics Management", href: "/our-services/logistics" },
         { name: "Warehousing", href: "/our-services/warehousing" },
         { name: "Supply Chain", href: "/our-services/supply-chain" },
-        { name: "Cross-Border Transport", href: "/our-services/cross-border" },
+        { name: "Cross-Border Transport", href: "/our-services/cross-border-transport" },
       ],
     },
     {
