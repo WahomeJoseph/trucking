@@ -13,7 +13,7 @@ import Image from "next/image";
 export default function HomePage() {
 
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0)
-  const [counters, setCounters] = useState({ clients: 100000, experience: 5, trucks: 300, delivery: 99 })
+  const [counters, setCounters] = useState({ clients: 1000, experience: 10, trucks: 300, delivery: 99 })
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
 
   useEffect(() => {
@@ -392,19 +392,19 @@ export default function HomePage() {
               </p>
 
               <div className="grid grid-cols-2 gap-5 mt-8">
-                <div className="text-center bg-white p-6 rounded-xl shadow-lg border">
+                <div className="text-center bg-white p-6 rounded-xl shadow-lg border border-border/25">
                   <div className="text-4xl font-bold text-primary mb-2">{counters.clients}+</div>
                   <div className="text-sm text-muted-foreground font-medium">Happy Clients</div>
                 </div>
-                <div className="text-center bg-white p-6 rounded-xl shadow-lg border">
+                <div className="text-center bg-white p-6 rounded-xl shadow-lg border border-border/25">
                   <div className="text-4xl font-bold text-primary mb-2">{counters.experience}+</div>
                   <div className="text-sm text-muted-foreground font-medium">Years Experience</div>
                 </div>
-                <div className="text-center bg-white p-6 rounded-xl shadow-lg border">
+                <div className="text-center bg-white p-6 rounded-xl shadow-lg border border-border/25">
                   <div className="text-4xl font-bold text-primary mb-2">{counters.trucks}+</div>
                   <div className="text-sm text-muted-foreground font-medium">Modern Trucks</div>
                 </div>
-                <div className="text-center bg-white p-6 rounded-xl shadow-lg border">
+                <div className="text-center bg-white p-6 rounded-xl shadow-lg border border-border/25">
                   <div className="text-4xl font-bold text-primary mb-2">{counters.delivery}%</div>
                   <div className="text-sm text-muted-foreground font-medium">On-Time Delivery</div>
                 </div>
