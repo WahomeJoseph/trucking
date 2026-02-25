@@ -37,21 +37,21 @@ export default function ServicesPage() {
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">From freight to warehousing, we provide end-to-end logistics solutions designed for African markets.</p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {
-                services.map(service => (
-                  <Link key={service.title} href={service.href} className="group bg-white rounded-2xl shadow-lg border border-border/50 p-8 hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] block">
-                    <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                      <service.icon className="w-7 h-7 text-primary" />
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-3">{service.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed mb-6">{service.desc}</p>
-                    <div className="flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all"><span>Learn More</span><ArrowRight className="w-4 h-4" /></div>
-                  </Link>
-                ))
-              }
-            </div>
-          </section>
+            {
+              services.map(service => (
+                <Link key={service.title} href={service.href} className="group bg-white rounded-2xl shadow-lg border border-border/50 p-8 hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] block">
+                  <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                    <service.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-3">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">{service.desc}</p>
+                  <div className="flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all"><span>Learn More</span><ArrowRight className="w-4 h-4" /></div>
+                </Link>
+              ))
+            }
+          </div>
+          </div>
+        </section>
 
           <section className="py-20 bg-primary text-white text-center">
             <div className="container mx-auto px-4">
@@ -60,7 +60,6 @@ export default function ServicesPage() {
               <Link href="/get-quote" className="inline-flex items-center bg-white text-primary hover:bg-white/90 transition-colors px-8 py-3 rounded-full font-semibold text-lg">Get A Free Quote</Link>
             </div>
           </section>
-      </section>
     </div>
   )
 }
