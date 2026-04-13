@@ -1,90 +1,65 @@
-import { Truck, Warehouse, Globe, Package, Clock, Shield } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+'use client'
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Truck, Package, Warehouse, Globe, BarChart3, ArrowRight } from 'lucide-react'
+
+const services = [
+  { icon: Truck, title: "Freight Transportation", href: "/our-services/freight-transportation", desc: "Reliable road freight solutions across East and Central Africa with real-time tracking and dedicated support." },
+  { icon: BarChart3, title: "Logistics Management", href: "/our-services/logistics", desc: "End-to-end supply chain optimization, route planning, and performance analytics for your business." },
+  { icon: Warehouse, title: "Warehousing", href: "/our-services/warehousing", desc: "Secure, climate-controlled storage facilities strategically located across the region." },
+  { icon: Package, title: "Supply Chain Solutions", href: "/our-services/supply-chain", desc: "Integrated supply chain management from procurement to last-mile delivery." },
+  { icon: Globe, title: "Cross-Border Transport", href: "/our-services/cross-border-transport", desc: "Seamless cross-border logistics with full customs clearance and documentation support." },
+]
 
 export default function ServicesPage() {
-  const services = [
-    {
-      icon: Truck,
-      title: "Freight Transportation",
-      description: "Reliable cargo transport across East Africa with real-time tracking",
-      features: ["Nationwide coverage", "Real-time tracking", "Secure handling"]
-    },
-    {
-      icon: Warehouse,
-      title: "Warehousing",
-      description: "Secure storage solutions with advanced inventory management",
-      features: ["Climate control", "24/7 security", "Inventory management"]
-    },
-    {
-      icon: Globe,
-      title: "Cross-Border Transport",
-      description: "Seamless logistics across East African borders",
-      features: ["Customs clearance", "Border expertise", "Document handling"]
-    },
-    {
-      icon: Package,
-      title: "Last-Mile Delivery",
-      description: "Efficient final delivery solutions to your doorstep",
-      features: ["Urban logistics", "Time-sensitive", "Customer notification"]
-    },
-    {
-      icon: Clock,
-      title: "Logistics Management",
-      description: "Comprehensive supply chain optimization services",
-      features: ["Route optimization", "Cost analysis", "Performance metrics"]
-    },
-    {
-      icon: Shield,
-      title: "Supply Chain Solutions",
-      description: "End-to-end logistics solutions for your business",
-      features: ["Risk management", "Quality assurance", "Continuous improvement"]
-    }
-  ];
-
   return (
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-foreground mb-4">Our Services</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive logistics solutions tailored for the East African market
-          </p>
+    <div>
+      <section className="relative h-96 w-full">
+        <div className="absolute inset-0">
+          <Image src="/hero-truck.jpg" alt="Our Services" fill className="object-cover" priority />
+          <div className="absolute inset-0 bg-black/50" />
         </div>
+        <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
+          <div className="flex items-center justify-center w-full my-6">
+            <div className="flex-grow h-px bg-gradient-to-r from-transparent via-accent to-transparent max-w-[150px]" />
+            <h1 className="mx-6 text-4xl md:text-5xl font-bold text-white whitespace-nowrap">Our Services</h1>
+            <div className="flex-grow h-px bg-gradient-to-r from-transparent via-accent to-transparent max-w-[150px]" />
+          </div>
+          <p className="text-xl md:text-2xl text-white opacity-90 text-center">Comprehensive Logistics Solutions Across Africa</p>
+        </div>
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {services.map((service, index) => (
-            <div key={service.title} className="service-card p-6 rounded-lg animate-fade-up" style={{ animationDelay: `${index * 0.1}s` }}>
-              <div className="flex items-center justify-center w-16 h-16 rounded-full bg-accent mb-4 shadow-accent-glow">
-                <service.icon className="w-8 h-8 text-accent-foreground" />
-              </div>
-              <h3 className="text-xl font-bold text-foreground mb-3">{service.title}</h3>
-              <p className="text-muted-foreground mb-4">{service.description}</p>
-              <ul className="space-y-2 mb-4">
-                {service.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                    <div className="w-2 h-2 bg-accent rounded-full mr-3"></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-              <Button asChild variant="outline" className="w-full">
-                <Link href={`/services/${service.title.toLowerCase().replace(/\s+/g, '-')}`}>
-                  Learn More
+      <section className="py-20 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-foreground mb-4">What We <span className="text-primary">Offer</span></h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">From freight to warehousing, we provide end-to-end logistics solutions designed for African markets.</p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {
+              services.map(service => (
+                <Link key={service.title} href={service.href} className="group bg-white rounded-2xl shadow-lg border border-border/50 p-8 hover:shadow-xl hover:border-primary/30 transition-all duration-300 hover:scale-[1.02] block">
+                  <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                    <service.icon className="w-7 h-7 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors mb-3">{service.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-6">{service.desc}</p>
+                  <div className="flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all"><span>Learn More</span><ArrowRight className="w-4 h-4" /></div>
                 </Link>
-              </Button>
-            </div>
-          ))}
-        </div>
+              ))
+            }
+          </div>
+          </div>
+        </section>
 
-        <div className="text-center">
-          <Button asChild size="lg" className="bg-primary hover:bg-primary-dark text-primary-foreground">
-            <Link href="/get-quote">
-              Get a Free Quote
-            </Link>
-          </Button>
-        </div>
-      </div>
+          <section className="py-20 bg-primary text-white text-center">
+            <div className="container mx-auto px-4">
+              <h2 className="text-3xl font-bold mb-4">Ready to Move Your Business Forward?</h2>
+              <p className="text-white/80 max-w-2xl mx-auto mb-8">Contact TruckCorp today for a customized logistics solution tailored to your needs.</p>
+              <Link href="/get-quote" className="inline-flex items-center bg-white text-primary hover:bg-white/90 transition-colors px-8 py-3 rounded-full font-semibold text-lg">Get A Free Quote</Link>
+            </div>
+          </section>
     </div>
-  );
+  )
 }

@@ -5,18 +5,18 @@ import Link from 'next/link'
 import { CheckCircle } from 'lucide-react'
 
 const features = [
-      {name:"Real-Time GPS Tracking",desc:"Monitor your shipment 24/7 with live GPS updates and status notifications"},
-      {name:"Dedicated Fleet",desc:"Modern trucks maintained to the highest standards for every cargo type"},
-      {name:"Experienced Drivers",desc:"Professionally trained and vetted drivers with cross-border expertise"},
-      {name:"Insurance Coverage",desc:"Comprehensive cargo insurance for complete peace of mind"},
-      {name:"Flexible Scheduling",desc:"Same-day, next-day, and scheduled freight options to fit your timeline"},
-      {name:"24/7 Support",desc:"Round-the-clock customer service and incident response team"},
+      {name:"Climate Control",desc:"Temperature and humidity controlled environments for sensitive cargo"},
+      {name:"24/7 Security",desc:"CCTV surveillance, security guards, and access control systems"},
+      {name:"Inventory Management",desc:"Barcode scanning and real-time stock level monitoring"},
+      {name:"Pick & Pack Services",desc:"Efficient order fulfillment and custom packing solutions"},
+      {name:"Flexible Terms",desc:"Short-term and long-term storage options to suit your needs"},
+      {name:"Strategic Locations",desc:"Warehouses in Nairobi, Mombasa, Kampala, and Dar es Salaam"},
 ]
 const processSteps = [
-      {num:"01",title:"Request Quote",desc:"Submit your freight details and receive a competitive quote within hours"},
-      {num:"02",title:"Cargo Assessment",desc:"Our team evaluates your cargo requirements and assigns the optimal vehicle"},
-      {num:"03",title:"Pickup & Loading",desc:"Secure loading at your premises with tamper-proof sealing procedures"},
-      {num:"04",title:"Transit & Delivery",desc:"Real-time monitored transit with proof-of-delivery confirmation"},
+      {num:"01",title:"Space Assessment",desc:"Evaluate your storage needs and identify the optimal facility"},
+      {num:"02",title:"Intake & Cataloging",desc:"Professional cargo receipt, inspection, and inventory setup"},
+      {num:"03",title:"Storage Management",desc:"Ongoing inventory management with regular stock reconciliation"},
+      {num:"04",title:"Dispatch",desc:"Efficient order picking, packing, and dispatch to final destinations"},
 ]
 
 export default function Page() {
@@ -24,16 +24,16 @@ export default function Page() {
     <div>
       <section className="relative h-96 w-full">
         <div className="absolute inset-0">
-          <Image src="/hero-truck.jpg" alt="Freight Transportation" fill className="object-cover" priority />
+          <Image src="/hero-truck.jpg" alt="Warehousing" fill className="object-cover" priority />
           <div className="absolute inset-0 bg-black/50" />
         </div>
         <div className="relative z-10 h-full flex flex-col items-center justify-center px-4">
           <div className="flex items-center justify-center w-full my-6">
             <div className="flex-grow h-px bg-gradient-to-r from-transparent via-accent to-transparent max-w-[150px]" />
-            <h1 className="mx-6 text-4xl md:text-5xl font-bold text-white text-center">Freight Transportation</h1>
+            <h1 className="mx-6 text-4xl md:text-5xl font-bold text-white text-center">Warehousing</h1>
             <div className="flex-grow h-px bg-gradient-to-r from-transparent via-accent to-transparent max-w-[150px]" />
           </div>
-          <p className="text-xl md:text-2xl text-white opacity-90 text-center max-w-2xl">Reliable road freight solutions across East and Central Africa</p>
+          <p className="text-xl md:text-2xl text-white opacity-90 text-center max-w-2xl">Secure, strategic storage solutions across East Africa</p>
         </div>
       </section>
 
@@ -42,11 +42,11 @@ export default function Page() {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">About This <span className="text-primary">Service</span></h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">TruckCorp offers comprehensive freight transportation services designed for the unique challenges of African logistics. Our modern fleet, experienced drivers, and advanced tracking systems ensure your cargo reaches its destination safely and on time across 6+ countries.</p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">TruckCorp's warehousing facilities are strategically located across major East African cities, offering secure, climate-controlled storage with full inventory management. Our warehouses are equipped with modern handling equipment and 24/7 security.</p>
               <Link href="/get-quote" className="inline-flex items-center bg-primary text-white hover:bg-primary/90 transition-colors px-6 py-3 rounded-full font-semibold">Get A Quote</Link>
             </div>
             <div className="relative">
-              <Image src="/hero-truck.jpg" alt="Freight Transportation" width={800} height={500} className="w-full h-[400px] object-cover rounded-2xl shadow-2xl" />
+              <Image src="/hero-truck.jpg" alt="Warehousing" width={800} height={500} className="w-full h-[400px] object-cover rounded-2xl shadow-2xl" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-2xl" />
             </div>
           </div>
@@ -87,7 +87,7 @@ export default function Page() {
       <section className="py-20 bg-primary text-white text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-4">Ready to Get Started?</h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8">Contact TruckCorp today for a customized freight transportation solution tailored to your needs.</p>
+          <p className="text-white/80 max-w-2xl mx-auto mb-8">Contact TruckCorp today for a customized warehousing solution tailored to your needs.</p>
           <Link href="/get-quote" className="inline-flex items-center bg-white text-primary hover:bg-white/90 transition-colors px-8 py-3 rounded-full font-semibold text-lg">Get A Free Quote</Link>
         </div>
       </section>

@@ -165,19 +165,19 @@ export default function AboutPage() {
                             </p>
 
                             <div className="grid grid-cols-2 gap-5 mt-8">
-                                <div className="text-center bg-white p-6 rounded-xl shadow-lg border">
+                                <div className="text-center bg-white p-6 rounded-xl shadow-lg border border-border/25">
                                     <div className="text-4xl font-bold text-primary mb-2">{counters.clients}+</div>
                                     <div className="text-sm text-muted-foreground font-medium">Happy Clients</div>
                                 </div>
-                                <div className="text-center bg-white p-6 rounded-xl shadow-lg border">
+                                <div className="text-center bg-white p-6 rounded-xl shadow-lg border border-border/25">
                                     <div className="text-4xl font-bold text-primary mb-2">{counters.experience}+</div>
                                     <div className="text-sm text-muted-foreground font-medium">Years Experience</div>
                                 </div>
-                                <div className="text-center bg-white p-6 rounded-xl shadow-lg border">
+                                <div className="text-center bg-white p-6 rounded-xl shadow-lg border border-border/25">
                                     <div className="text-4xl font-bold text-primary mb-2">{counters.trucks}+</div>
                                     <div className="text-sm text-muted-foreground font-medium">Modern Trucks</div>
                                 </div>
-                                <div className="text-center bg-white p-6 rounded-xl shadow-lg border">
+                                <div className="text-center bg-white p-6 rounded-xl shadow-lg border border-border/25">
                                     <div className="text-4xl font-bold text-primary mb-2">{counters.delivery}%</div>
                                     <div className="text-sm text-muted-foreground font-medium">On-Time Delivery</div>
                                 </div>
@@ -269,7 +269,7 @@ export default function AboutPage() {
                         <h2 className="mx-6 text-2xl md:text-3xl font-bold text-foreground my-6 whitespace-nowrap">
                             Our <span className="pb-2 border-b-2 capitalize border-accent inline-block text-primary">Core Values</span>
                         </h2>
-                        
+
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                             {coreValues.map((value, index) => (
                                 <div
