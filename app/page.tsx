@@ -246,7 +246,6 @@ export default function HomePage() {
                     className="w-full h-64 object-cover transition-opacity duration-1000"
                     key={sliderImages[currentImageIndex].src}
                     priority={true}
-                    quality={100}
                   />
                 </div>
 
@@ -267,102 +266,115 @@ export default function HomePage() {
       </section>
 
       {/* Services Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl capitalize text-primary max-w-2xl mx-auto">
-              Reliable Trucking Services Across Africa
-            </h2>
+      {/* Services Section */}
+<section className="py-16 bg-background">
+  <div className="container mx-auto px-4">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl capitalize text-primary max-w-2xl mx-auto">
+        Reliable Trucking Services Across Africa
+      </h2>
+    </div>
+
+    <div className="grid lg:grid-cols-2 gap-12 items-start">
+      <div>
+        {/* sub-title */}
+        <div className="flex items-center justify-center my-5">
+          <div className="flex-grow h-px bg-gradient-to-r from-transparent via-primary to-transparent max-w-[150px]" />
+          <h2 className="text-3xl md:text-3xl text-center font-bold text-foreground mb-4">
+            What We <span className="text-primary">Offer</span>
+          </h2>
+          <div className="flex-grow h-px bg-gradient-to-r from-transparent via-primary to-transparent max-w-[150px]" />
+        </div>
+
+        <div className="relative">
+          <Image
+            src="/truck-fleet.jpg"
+            width={800}
+            height={600}
+            alt="Professional trucking fleet"
+            className="w-full h-[600px] object-cover rounded-2xl shadow-2xl"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl" />
+          <div className="absolute bottom-6 left-6 text-white">
+            <h3 className="text-2xl font-bold mb-2">Professional Fleet</h3>
+            <p className="text-white/90">Modern trucks equipped for any cargo</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Right side - Content */}
+      <div className="space-y-8">
+        {/* Paragraph section */}
+        <div>
+          <h3 className="text-xl font-bold capitalize text-foreground mb-3">
+            Comprehensive logistics solutions tailored for African markets
+          </h3>
+          <p className="text-lg text-muted-foreground leading-relaxed mb-4">
+            At TruckCorp, we provide comprehensive trucking and freight services designed to meet the unique
+            challenges of African logistics. Our modern fleet of trucks, experienced drivers, and advanced
+            tracking systems ensure your cargo reaches its destination safely and on time.
+          </p>
+          <p className="text-lg text-muted-foreground leading-relaxed">
+            From small packages to large freight shipments, we handle it all with the professionalism and
+            reliability that has made us the trusted choice for over 500 businesses across the region.
+          </p>
+        </div>
+
+        {/* Full width image */}
+        <div className="relative">
+          <Image
+            src="/hero-truck.jpg"
+            width={800}
+            height={400}
+            alt="Cargo containers and logistics operations"
+            className="w-full h-48 object-cover rounded-xl shadow-lg"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent rounded-xl" />
+          <div className="absolute bottom-4 left-4 text-white">
+            <p className="font-semibold">Port & Container Services</p>
+          </div>
+        </div>
+
+        {/* Two service images in grid */}
+        <div className="grid grid-cols-2 gap-6">
+          <div className="relative group cursor-pointer">
+            <Image
+              src="/long-distance.jpg"
+              width={400}
+              height={300}
+              alt="Long distance trucking"
+              className="w-full h-40 object-cover rounded-xl shadow-lg transition-transform group-hover:scale-105"
+              sizes="(max-width: 768px) 50vw, 25vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-xl" />
+            <div className="absolute bottom-3 left-3 text-white">
+              <p className="font-semibold text-sm">Long Distance</p>
+              <p className="text-xs text-white/90">Cross-border freight</p>
+            </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-start">
-            <div>
-              {/* sub-title */}
-              <div className="flex items-center justify-center my-5">
-                <div className="flex-grow h-px bg-gradient-to-r from-transparent via-primary to-transparent max-w-[150px]" />
-                <h2 className="text-3xl md:text-3xl text-center font-bold text-foreground mb-4">
-                  What We <span className="text-primary">Offer</span>
-                </h2>
-                <div className="flex-grow h-px bg-gradient-to-r from-transparent via-primary to-transparent max-w-[150px]" />
-              </div>
-
-              <div className="relative">
-                <Image
-                  src="/truck-fleet.jpg"
-                  alt="Professional trucking fleet"
-                  className="w-full h-[600px] object-cover rounded-2xl shadow-2xl"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-2xl" />
-                <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-bold mb-2">Professional Fleet</h3>
-                  <p className="text-white/90">Modern trucks equipped for any cargo</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Content */}
-            <div className="space-y-8">
-              {/* Paragraph section */}
-              <div>
-                <h3 className="text-xl font-bold capitalize text-foreground mb-3">
-                  Comprehensive logistics solutions tailored for African markets
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-4">
-                  At TruckCorp, we provide comprehensive trucking and freight services designed to meet the unique
-                  challenges of African logistics. Our modern fleet of trucks, experienced drivers, and advanced
-                  tracking systems ensure your cargo reaches its destination safely and on time.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  From small packages to large freight shipments, we handle it all with the professionalism and
-                  reliability that has made us the trusted choice for over 500 businesses across the region.
-                </p>
-              </div>
-
-              {/* Full width image */}
-              <div className="relative">
-                <Image
-                  src="/hero-truck.jpg"
-                  alt="Cargo containers and logistics operations"
-                  className="w-full h-48 object-cover rounded-xl shadow-lg"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent rounded-xl" />
-                <div className="absolute bottom-4 left-4 text-white">
-                  <p className="font-semibold">Port & Container Services</p>
-                </div>
-              </div>
-
-              {/* Two service images in grid */}
-              <div className="grid grid-cols-2 gap-6">
-                <div className="relative group cursor-pointer">
-                  <Image
-                    src="/long-distance.jpg"
-                    alt="Long distance trucking"
-                    className="w-full h-40 object-cover rounded-xl shadow-lg transition-transform group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-xl" />
-                  <div className="absolute bottom-3 left-3 text-white">
-                    <p className="font-semibold text-sm">Long Distance</p>
-                    <p className="text-xs text-white/90">Cross-border freight</p>
-                  </div>
-                </div>
-
-                <div className="relative group cursor-pointer">
-                  <Image
-                    src="/logistics-operations.jpg"
-                    alt="Warehouse and storage"
-                    className="w-full h-40 object-cover rounded-xl shadow-lg transition-transform group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-xl" />
-                  <div className="absolute bottom-3 left-3 text-white">
-                    <p className="font-semibold text-sm">Warehousing</p>
-                    <p className="text-xs text-white/90">Storage solutions</p>
-                  </div>
-                </div>
-              </div>
+          <div className="relative group cursor-pointer">
+            <Image
+              src="/logistics-operations.jpg"
+              width={400}
+              height={300}
+              alt="Warehouse and storage"
+              className="w-full h-40 object-cover rounded-xl shadow-lg transition-transform group-hover:scale-105"
+              sizes="(max-width: 768px) 50vw, 25vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent rounded-xl" />
+            <div className="absolute bottom-3 left-3 text-white">
+              <p className="font-semibold text-sm">Warehousing</p>
+              <p className="text-xs text-white/90">Storage solutions</p>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* About Section */}
       <section id="about-section" className="py-16 bg-muted/30">
@@ -431,7 +443,6 @@ export default function HomePage() {
                   width={300}
                   height={300}
                   priority={true}
-                  quality={100}
                   className="object-cover rounded-xl"
                 />
               </div>
@@ -455,6 +466,8 @@ export default function HomePage() {
                   <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
                     <Image
                       src={member.image || "/placeholder.svg"}
+                      width={400}
+                      height={400}
                       alt={member.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                     />
@@ -583,6 +596,8 @@ export default function HomePage() {
                 <div className="flex items-center pt-4 border-t border-border/30">
                   <Image
                     src={testimonial.image}
+                    width={56}
+                    height={56}
                     alt={testimonial.name}
                     className="w-14 h-14 rounded-full object-cover border-2 border-primary shadow-md"
                   />
