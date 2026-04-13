@@ -1,9 +1,9 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import { Users, Award, Star, Mail, Globe, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 import { FaXTwitter, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
-import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
+import { RiDoubleQuotesL } from "react-icons/ri";
 import { Button } from "@/components/ui/button";
 import { Buttons } from "@/components/ui/moving-border";
 import Link from "next/link";
@@ -63,7 +63,7 @@ export default function HomePage() {
     }, 5000)
 
     return () => clearInterval(timer)
-  }, [])
+  },)
 
   const toggleFaq = (index: number) => {
     setExpandedFaq(expandedFaq === index ? null : index)
@@ -287,7 +287,7 @@ export default function HomePage() {
               </div>
 
               <div className="relative">
-                <img
+                <Image
                   src="/truck-fleet.jpg"
                   alt="Professional trucking fleet"
                   className="w-full h-[600px] object-cover rounded-2xl shadow-2xl"
@@ -320,7 +320,7 @@ export default function HomePage() {
 
               {/* Full width image */}
               <div className="relative">
-                <img
+                <Image
                   src="/hero-truck.jpg"
                   alt="Cargo containers and logistics operations"
                   className="w-full h-48 object-cover rounded-xl shadow-lg"
@@ -334,7 +334,7 @@ export default function HomePage() {
               {/* Two service images in grid */}
               <div className="grid grid-cols-2 gap-6">
                 <div className="relative group cursor-pointer">
-                  <img
+                  <Image
                     src="/long-distance.jpg"
                     alt="Long distance trucking"
                     className="w-full h-40 object-cover rounded-xl shadow-lg transition-transform group-hover:scale-105"
@@ -347,7 +347,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative group cursor-pointer">
-                  <img
+                  <Image
                     src="/logistics-operations.jpg"
                     alt="Warehouse and storage"
                     className="w-full h-40 object-cover rounded-xl shadow-lg transition-transform group-hover:scale-105"
@@ -380,7 +380,7 @@ export default function HomePage() {
 
               <p className="text-lg text-muted-foreground text-justify leading-relaxed">
                 Founded in 2013 with just two trucks and a vision to revolutionize logistics in East Africa,
-                TruckCorp has grown into the region's most trusted freight and transportation company. Our journey
+                TruckCorp has grown into the region&apos;s most trusted freight and transportation company. Our journey
                 began when our founder, Joseph Wachira , recognized the critical need for reliable, professional logistics
                 services that could connect businesses across borders.
               </p>
@@ -450,10 +450,10 @@ export default function HomePage() {
             </div>
 
             <div className="grid md:grid-cols-3 gap-10">
-              {teamMembers.map((member, index) => (
+              {teamMembers.map((member) => (
                 <div key={member.name} className="relative group">
                   <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
-                    <img
+                    <Image
                       src={member.image || "/placeholder.svg"}
                       alt={member.name}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -517,7 +517,7 @@ export default function HomePage() {
                   { name: "SADC", logo: "/logos/sadc-logo.png" },
                   { name: "Coca-Cola Beverages Africa", logo: "/logos/cocacola-logo.png" },
                   { name: "Bidco Africa", logo: "/logos/bidco-logo.png" },
-                ].map((partner, index) => (
+                ].map((partner) => (
                   <div
                     key={partner.name}
                     className="bg-white p-6 rounded-2xl shadow-lg border-none hover:shadow-xl transition-all duration-300 group cursor-pointer"
@@ -552,7 +552,7 @@ export default function HomePage() {
               <span className="pb-2 border-b-2 border-accent/50 inline-block">Trusted by </span> {" "} Industry Leaders
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our clients across the region have to say about our logistics solutions.
+              Don&apos;t just take our word for it. Here&apos;s what our clients across the region have to say about our logistics solutions.
             </p>
           </div>
 
@@ -581,7 +581,7 @@ export default function HomePage() {
 
                 {/* Client Info */}
                 <div className="flex items-center pt-4 border-t border-border/30">
-                  <img
+                  <Image
                     src={testimonial.image}
                     alt={testimonial.name}
                     className="w-14 h-14 rounded-full object-cover border-2 border-primary shadow-md"

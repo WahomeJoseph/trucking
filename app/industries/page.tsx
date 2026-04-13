@@ -50,7 +50,7 @@ export default function IndustriesPage() {
       </section>
       <section className="py-20 bg-primary text-white text-center">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-4">Don't See Your Industry?</h2>
+          <h2 className="text-3xl font-bold mb-4">Don&apos;t See Your Industry?</h2>
           <p className="text-white/80 max-w-2xl mx-auto mb-8">We serve many more sectors. Contact us to discuss a customized solution.</p>
           <Link href="/contact-us" className="inline-flex items-center bg-white text-primary hover:bg-white/90 transition-colors px-8 py-3 rounded-full font-semibold text-lg">Talk to an Expert</Link>
         </div>

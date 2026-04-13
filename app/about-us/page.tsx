@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { FaLinkedinIn, FaXTwitter, FaCheck, FaTruck, FaUsers, FaHandshake, FaLightbulb } from 'react-icons/fa6'
-import { Mail, Target, Eye, Heart, TrendingUp, Shield, Globe } from 'lucide-react'
+import { FaLinkedinIn, FaXTwitter, FaTruck, FaUsers, FaHandshake, FaLightbulb } from 'react-icons/fa6'
+import { Mail, Target, Eye,Shield, Globe } from 'lucide-react'
 
 export default function AboutPage() {
     const [counters, setCounters] = useState({ clients: 100000, experience: 5, trucks: 300, delivery: 99 })
@@ -153,7 +153,7 @@ export default function AboutPage() {
 
                             <p className="text-lg text-muted-foreground text-justify leading-relaxed">
                                 Founded in 2013 with just two trucks and a vision to revolutionize logistics in East Africa,
-                                TruckCorp has grown into the region's most trusted freight and transportation company. Our journey
+                                TruckCorp has grown into the region&apos;s most trusted freight and transportation company. Our journey
                                 began when our founder, Joseph Wachira, recognized the critical need for reliable, professional logistics
                                 services that could connect businesses across borders.
                             </p>
@@ -231,13 +231,13 @@ export default function AboutPage() {
                                     <h3 className="text-2xl font-bold text-foreground">Our Vision</h3>
                                 </div>
                                 <p className="text-lg text-muted-foreground leading-relaxed">
-                                    To be Africa's most trusted and innovative logistics partner, connecting businesses and communities
+                                    To be Africa&apos;s most trusted and innovative logistics partner, connecting businesses and communities
                                     through seamless, reliable, and sustainable transportation solutions that drive economic growth
                                     across the continent.
                                 </p>
                                 <div className="mt-6 p-4 bg-primary/5 rounded-xl border-l-4 border-primary">
                                     <p className="text-sm text-muted-foreground italic">
-                                        "Building bridges through logistics, powering Africa's future"
+                                        &quot;Building bridges through logistics, powering Africa&apos;s future&quot;
                                     </p>
                                 </div>
                             </div>
@@ -257,7 +257,7 @@ export default function AboutPage() {
                                 </p>
                                 <div className="mt-6 p-4 bg-primary/5 rounded-xl border-l-4 border-primary">
                                     <p className="text-sm text-muted-foreground italic">
-                                        "Delivering excellence in every mile, for every client, across Africa"
+                                        &quot;Delivering excellence in every mile, for every client, across Africa&quot;
                                     </p>
                                 </div>
                             </div>
@@ -271,7 +271,7 @@ export default function AboutPage() {
                         </h2>
 
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {coreValues.map((value, index) => (
+                            {coreValues.map((value) => (
                                 <div
                                     key={value.title}
                                     className="bg-white rounded-2xl shadow-lg border border-primary/10 p-6 hover:shadow-xl transition-all duration-300 group hover:border-primary/30"
@@ -304,10 +304,10 @@ export default function AboutPage() {
                         </div>
 
                         <div className="grid md:grid-cols-3 gap-10">
-                            {teamMembers.map((member, index) => (
+                            {teamMembers.map((member) => (
                                 <div key={member.name} className="relative group">
                                     <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-2xl">
-                                        <img
+                                        <Image
                                             src={member.image || "/placeholder.svg"}
                                             alt={member.name}
                                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -371,7 +371,7 @@ export default function AboutPage() {
                                     { name: "SADC", logo: "/logos/sadc-logo.png" },
                                     { name: "Coca-Cola Beverages Africa", logo: "/logos/cocacola-logo.png" },
                                     { name: "Bidco Africa", logo: "/logos/bidco-logo.png" },
-                                ].map((partner, index) => (
+                                ].map((partner) => (
                                     <div
                                         key={partner.name}
                                         className="bg-white p-6 rounded-2xl shadow-lg border-none hover:shadow-xl transition-all duration-300 group cursor-pointer"

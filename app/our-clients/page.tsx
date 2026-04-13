@@ -84,7 +84,7 @@ export default function OurClientsPage() {
               <span className="pb-2 border-b-2 border-accent/50 inline-block">Trusted by </span> {" "} Industry Leaders
             </h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Don't just take our word for it. Here's what our clients across the region have to say about our logistics solutions.
+              Don&apos;t just take our word for it. Here&apos;s what our clients across the region have to say about our logistics solutions.
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -93,7 +93,7 @@ export default function OurClientsPage() {
                 <div className="mb-3"><RiDoubleQuotesL size={30} className="text-primary/40 mb-2" /><p className="text-foreground leading-relaxed">{t.quote}</p></div>
                 <div className="flex mb-4">{[...Array(t.rating)].map((_, i) => (<svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>))}</div>
                 <div className="flex items-center pt-4 border-t border-border/30">
-                  <img src={t.image} alt={t.name} className="w-14 h-14 rounded-full object-cover border-2 border-primary shadow-md" />
+                  <Image src={t.image} alt={t.name} className="w-14 h-14 rounded-full object-cover border-2 border-primary shadow-md" />
                   <div className="ml-4"><p className="font-semibold text-foreground">{t.name}</p><p className="text-sm text-muted-foreground">{t.role}</p><p className="text-xs text-primary font-medium">{t.company}</p></div>
                 </div>
               </div>
@@ -106,7 +106,7 @@ export default function OurClientsPage() {
       <section className="py-20 bg-primary text-white text-center">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold mb-4">Join 500+ Businesses That Trust TruckCorp</h2>
-          <p className="text-white/80 max-w-2xl mx-auto mb-8">Experience the reliability and professionalism that has made us East Africa's preferred logistics partner.</p>
+          <p className="text-white/80 max-w-2xl mx-auto mb-8">Experience the reliability and professionalism that has made us East Africa&apos;s preferred logistics partner.</p>
           <Link href="/get-quote" className="inline-flex items-center bg-white text-primary hover:bg-white/90 transition-colors px-8 py-3 rounded-full font-semibold text-lg">Get A Quote Today</Link>
         </div>
       </section>

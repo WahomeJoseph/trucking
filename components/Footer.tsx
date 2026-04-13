@@ -10,7 +10,6 @@ import {
     Twitter,
     Linkedin,
     Instagram,
-    ArrowRight,
     Send,
     SquareChevronUp,
     Users,
@@ -40,12 +39,6 @@ export const Footer = () => {
         { name: "Supply Chain Solutions", href: "/services/supply-chain" },
         { name: "Cross-Border Transport", href: "/services/cross-border" },
         { name: "Last-Mile Delivery", href: "/services/last-mile" },
-    ];
-
-    const aboutLinks = [
-        { name: "Our Story", href: "/about-us/our-story" },
-        { name: "Careers", href: "/about-us/careers" },
-        { name: "Branches & Partners", href: "/about-us/branches-and-partners" },
     ];
 
     const socialLinks = [

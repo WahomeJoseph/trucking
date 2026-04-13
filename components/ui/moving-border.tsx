@@ -10,10 +10,7 @@ import {
 } from "motion/react";
 import { cn } from "@/lib/utils";
 
-/* ============================================================
-   BUTTON WRAPPER
-============================================================ */
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export function Buttons({
   borderRadius = "1.75rem",
   children,
@@ -26,13 +23,14 @@ export function Buttons({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  as?: any;
-  containerClassName?: string;
-  borderClassName?: string;
-  duration?: number;
-  className?: string;
-  [key: string]: any;
+as?: React.ElementType | any;
+containerClassName?: string;
+borderClassName?: string;
+duration?: number;
+className?: string;
+[key: string]: any;
 }) {
+  /* eslint-enable @typescript-eslint/no-explicit-any */
   return (
     <Component
       className={cn(
@@ -73,10 +71,6 @@ export function Buttons({
   );
 }
 
-/* ============================================================
-   MOVING BORDER (FULLY SAFE VERSION)
-============================================================ */
-
 export const MovingBorder = ({
   children,
   duration = 3000,
@@ -88,7 +82,7 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) => {
   const pathRef = useRef<SVGRectElement | null>(null);
   const progress = useMotionValue(0);

@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css"
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Fira_Sans, Archivo } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "Trucking Company",
   description: "Professional logistics and transportation services.",
 };
+
+const firaSans = Fira_Sans({ subsets: ["latin"], weight: ["400", "700"] });
+const archivo = Archivo({ subsets: ["latin"], weight: ["400", "700"] });
 
 export default function RootLayout({
   children,
@@ -15,12 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100..900&family=Archivo:ital,wght@0,100..900&display=swap" />
-      </head>
-      <body>
+      <body className={`${firaSans.className} ${archivo.className}`}>
         <Navbar />
         {children}
         <Footer />

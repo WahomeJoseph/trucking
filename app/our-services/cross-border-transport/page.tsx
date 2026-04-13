@@ -42,7 +42,7 @@ export default function Page() {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">About This <span className="text-primary">Service</span></h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">Navigate cross-border trade with ease using TruckCorp's specialized cross-border transportation service. Our experienced team handles all customs documentation, border clearance, and compliance requirements so your goods move without delays.</p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">Navigate cross-border trade with ease using TruckCorp&apos;s specialized cross-border transportation service. Our experienced team handles all customs documentation, border clearance, and compliance requirements so your goods move without delays.</p>
               <Link href="/get-quote" className="inline-flex items-center bg-primary text-white hover:bg-primary/90 transition-colors px-6 py-3 rounded-full font-semibold">Get A Quote</Link>
             </div>
             <div className="relative">
