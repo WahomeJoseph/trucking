@@ -1,0 +1,5 @@
+{
+    "features": [
+        "https://raw.githubusercontent.com/vasturiano/three-globe/master/example/country-polygons/ne_110m_admin_0_countries.geojson"
+    ]
+}
