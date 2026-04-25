@@ -42,7 +42,7 @@ export default function Page() {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">About This <span className="text-primary">Service</span></h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">TruckCorp's warehousing facilities are strategically located across major East African cities, offering secure, climate-controlled storage with full inventory management. Our warehouses are equipped with modern handling equipment and 24/7 security.</p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">TruckCorp&apos;s warehousing facilities are strategically located across major East African cities, offering secure, climate-controlled storage with full inventory management. Our warehouses are equipped with modern handling equipment and 24/7 security.</p>
               <Link href="/get-quote" className="inline-flex items-center bg-primary text-white hover:bg-primary/90 transition-colors px-6 py-3 rounded-full font-semibold">Get A Quote</Link>
             </div>
             <div className="relative">

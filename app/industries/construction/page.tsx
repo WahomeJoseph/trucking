@@ -52,7 +52,7 @@ export default function Page() {
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">Logistics for <span className="text-primary">Construction</span></h2>
-              <p className="text-lg text-muted-foreground leading-relaxed mb-6">TruckCorp's construction logistics service is built for major infrastructure and building projects. From heavy machinery transport to daily materials delivery, we keep projects on schedule.</p>
+              <p className="text-lg text-muted-foreground leading-relaxed mb-6">TruckCorp&apos;s construction logistics service is built for major infrastructure and building projects. From heavy machinery transport to daily materials delivery, we keep projects on schedule.</p>
               <Link href="/get-quote" className="inline-flex items-center bg-primary text-white hover:bg-primary/90 transition-colors px-6 py-3 rounded-full font-semibold">Get A Quote <ArrowRight className="w-4 h-4 ml-2" /></Link>
             </div>
             <div className="relative">

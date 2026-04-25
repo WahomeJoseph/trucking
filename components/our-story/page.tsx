@@ -22,7 +22,7 @@ export default function OurStoryPage() {
                 and set out to build a company that would redefine transportation standards.
               </p>
               <p className="text-lg leading-relaxed">
-                Over the years, we've grown into one of Kenya's leading logistics providers, serving clients across 
+                Over the years, we&apos;ve grown into one of Kenya&apos;s leading logistics providers, serving clients across 
                 multiple industries including manufacturing, retail, and construction. Our commitment to excellence 
                 and customer satisfaction has been the driving force behind our success.
               </p>

@@ -351,7 +351,7 @@ export default function GetQuotePage() {
                               <optgroup label="West Africa">
                                 <option value="nigeria">Nigeria</option>
                                 <option value="ghana">Ghana</option>
-                                <option value="cote-divoire">Côte d'Ivoire</option>
+                                <option value="cote-divoire">Côte d&apos;Ivoire</option>
                                 <option value="senegal">Senegal</option>
                                 <option value="mali">Mali</option>
                                 <option value="burkina-faso">Burkina Faso</option>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Phone, Mail, MapPin, Send, MessageCircle, Clock, Truck, Users } from "lucide-react";
+import { Phone, Mail,Send, MessageCircle, Clock, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "motion/react";
@@ -88,7 +88,7 @@ export default function ContactUsPage() {
           <div className="max-w-7xl mx-auto">
             {/* Contact Cards - Horizontal Layout */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-              {contactCards.map((card, index) => (
+              {contactCards.map((card) => (
                 <div key={card.title} >
                   <a href={card.link} className="block h-full">
                     <Card className="h-full border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer group">
